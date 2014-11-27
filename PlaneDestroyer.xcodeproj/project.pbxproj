@@ -21,8 +21,6 @@
 		650D0F961A05E6F9008C6C0D /* shipAnimation.png in Resources */ = {isa = PBXBuildFile; fileRef = 650D0F951A05E6F9008C6C0D /* shipAnimation.png */; };
 		6521142E1A25A6BB00040DBE /* explosion_lw.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6521142D1A25A6BB00040DBE /* explosion_lw.wav */; };
 		652114321A25AF3E00040DBE /* loop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 652114311A25AF3E00040DBE /* loop.wav */; };
-		6553E0F81A0847FD00E69B5E /* ScoreResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6553E0F71A0847FD00E69B5E /* ScoreResultsViewController.m */; };
-		6553E0FB1A08594700E69B5E /* ScoreScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 6553E0FA1A08594700E69B5E /* ScoreScene.m */; };
 		6553E0FD1A08653F00E69B5E /* explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6553E0FC1A08653F00E69B5E /* explosion.wav */; };
 		655DE6161A05F1FC00DDC50E /* mine.png in Resources */ = {isa = PBXBuildFile; fileRef = 655DE6151A05F1FC00DDC50E /* mine.png */; };
 		655DE6181A06004C00DDC50E /* laser.png in Resources */ = {isa = PBXBuildFile; fileRef = 655DE6171A06004C00DDC50E /* laser.png */; };
@@ -62,10 +60,6 @@
 		6521142C1A25A65E00040DBE /* explosion_lower.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = explosion_lower.ogg; sourceTree = "<group>"; };
 		6521142D1A25A6BB00040DBE /* explosion_lw.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion_lw.wav; sourceTree = "<group>"; };
 		652114311A25AF3E00040DBE /* loop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = loop.wav; sourceTree = "<group>"; };
-		6553E0F61A0847FD00E69B5E /* ScoreResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreResultsViewController.h; sourceTree = "<group>"; };
-		6553E0F71A0847FD00E69B5E /* ScoreResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreResultsViewController.m; sourceTree = "<group>"; };
-		6553E0F91A08594700E69B5E /* ScoreScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreScene.h; sourceTree = "<group>"; };
-		6553E0FA1A08594700E69B5E /* ScoreScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreScene.m; sourceTree = "<group>"; };
 		6553E0FC1A08653F00E69B5E /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
 		655DE6151A05F1FC00DDC50E /* mine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mine.png; sourceTree = "<group>"; };
 		655DE6171A06004C00DDC50E /* laser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = laser.png; sourceTree = "<group>"; };
@@ -112,10 +106,6 @@
 		650D0F651A05D987008C6C0D /* PlaneDestroyer */ = {
 			isa = PBXGroup;
 			children = (
-				6553E0F91A08594700E69B5E /* ScoreScene.h */,
-				6553E0FA1A08594700E69B5E /* ScoreScene.m */,
-				6553E0F61A0847FD00E69B5E /* ScoreResultsViewController.h */,
-				6553E0F71A0847FD00E69B5E /* ScoreResultsViewController.m */,
 				656B885D1A083CBD00DEE68F /* SplashScreenViewController.h */,
 				656B885E1A083CBD00DEE68F /* SplashScreenViewController.m */,
 				650D0F6A1A05D987008C6C0D /* AppDelegate.h */,
@@ -278,11 +268,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				650D0F741A05D987008C6C0D /* GameViewController.m in Sources */,
-				6553E0FB1A08594700E69B5E /* ScoreScene.m in Sources */,
 				650D0F6C1A05D987008C6C0D /* AppDelegate.m in Sources */,
 				656B885F1A083CBD00DEE68F /* SplashScreenViewController.m in Sources */,
 				650D0F6F1A05D987008C6C0D /* GameScene.m in Sources */,
-				6553E0F81A0847FD00E69B5E /* ScoreResultsViewController.m in Sources */,
 				650D0F691A05D987008C6C0D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
