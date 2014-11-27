@@ -9,6 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "SplashScreenViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "GameOverScene.h"
 
 static const uint8_t bulletCategory = 1;
 static const uint8_t enemyCategory = 2;

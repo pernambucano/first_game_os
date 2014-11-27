@@ -25,6 +25,7 @@
 		655DE6161A05F1FC00DDC50E /* mine.png in Resources */ = {isa = PBXBuildFile; fileRef = 655DE6151A05F1FC00DDC50E /* mine.png */; };
 		655DE6181A06004C00DDC50E /* laser.png in Resources */ = {isa = PBXBuildFile; fileRef = 655DE6171A06004C00DDC50E /* laser.png */; };
 		656B885F1A083CBD00DEE68F /* SplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656B885E1A083CBD00DEE68F /* SplashScreenViewController.m */; };
+		65772A841A26C9E700F9B7EA /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 65772A831A26C9E700F9B7EA /* GameOverScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,8 @@
 		655DE6171A06004C00DDC50E /* laser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = laser.png; sourceTree = "<group>"; };
 		656B885D1A083CBD00DEE68F /* SplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenViewController.h; sourceTree = "<group>"; };
 		656B885E1A083CBD00DEE68F /* SplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenViewController.m; sourceTree = "<group>"; };
+		65772A821A26C9E700F9B7EA /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		65772A831A26C9E700F9B7EA /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,8 @@
 		650D0F651A05D987008C6C0D /* PlaneDestroyer */ = {
 			isa = PBXGroup;
 			children = (
+				65772A821A26C9E700F9B7EA /* GameOverScene.h */,
+				65772A831A26C9E700F9B7EA /* GameOverScene.m */,
 				656B885D1A083CBD00DEE68F /* SplashScreenViewController.h */,
 				656B885E1A083CBD00DEE68F /* SplashScreenViewController.m */,
 				650D0F6A1A05D987008C6C0D /* AppDelegate.h */,
@@ -271,6 +276,7 @@
 				650D0F6C1A05D987008C6C0D /* AppDelegate.m in Sources */,
 				656B885F1A083CBD00DEE68F /* SplashScreenViewController.m in Sources */,
 				650D0F6F1A05D987008C6C0D /* GameScene.m in Sources */,
+				65772A841A26C9E700F9B7EA /* GameOverScene.m in Sources */,
 				650D0F691A05D987008C6C0D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

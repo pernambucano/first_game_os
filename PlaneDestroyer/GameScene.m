@@ -10,12 +10,17 @@
 #import "ScoreScene.h"
 #import "SplashScreenViewController.h"
 
+@interface GameScene ()
+@property BOOL contentCreated;
+
+@end
+
+
 @implementation GameScene
 
 -(void)didMoveToView:(SKView *)view {
     
-    
-    
+    self.scaleMode = SKSceneScaleModeAspectFill;
     NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"loop" ofType:@"wav"];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     _player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
@@ -28,13 +33,13 @@
     
     screenRect = [[UIScreen mainScreen] bounds];
     screenHeight = screenRect.size.height;
-
+    
     screenWidth = screenRect.size.width;
     
-//    NSLog(@"%f, %f", screenWidth, screenHeight);
+    NSLog(@"%f, %f", screenWidth, screenHeight);
     
     _plane = [SKSpriteNode spriteNodeWithImageNamed:@"player.png"];
-//    _plane.position = CGPointMake(100, 300); // I could't work with spacial variables TODO: Change this to the right variables
+    //    _plane.position = CGPointMake(100, 300); // I could't work with spacial variables TODO: Change this to the right variables
     
     _plane.position = CGPointMake(_plane.size.width/2, self.frame.size.height/2);
     _plane.zPosition = 2;
@@ -44,7 +49,8 @@
     _plane.physicsBody.categoryBitMask = planeCategory;
     _plane.physicsBody.contactTestBitMask = enemyCategory;
     _plane.physicsBody.collisionBitMask = 0;
-    
+    _plane.xScale = 1;
+    _plane.yScale = 1;
     //Begin of Animate Player
     SKTexture *baseTexture = [SKTexture textureWithImageNamed:@"shipAnimation.png"];
     NSMutableArray *mAnimatingFrames = [NSMutableArray array];
@@ -74,10 +80,10 @@
     SKSpriteNode *background  = [SKSpriteNode spriteNodeWithImageNamed:@"mainbackground.png"];
     background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
     
-
+    
     background.xScale = 1.3;
     background.yScale = 1.3;
-
+    
     [self addChild:background];
     
     //schedule enemies
@@ -89,15 +95,15 @@
     
     SKAction *updateEnemies = [SKAction sequence:@[wait, callEnemies]];
     [self runAction:[SKAction repeatActionForever:updateEnemies]];
-    
-   
 }
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
 
     
 }
+
 
 -(void)addScore {
     NSMutableArray *scores = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"scores"]];
@@ -162,7 +168,15 @@
         
         SKAction * actionMove = [SKAction moveTo:CGPointMake(-enemy.size.width/2, actualY) duration:7];
         SKAction *remove = [SKAction removeFromParent];
-        [enemy runAction:[SKAction sequence:@[actionMove,remove]]];
+        //[enemy runAction:[SKAction sequence:@[actionMove,remove]]];
+        
+        SKAction * loseAction = [SKAction runBlock:^{
+            SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
+            SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:NO];
+            [self.view presentScene:gameOverScene transition: reveal];
+            _player.stop;
+        }];
+        [enemy runAction:[SKAction sequence:@[actionMove, loseAction, remove]]];
         
 //        CGPathRelease(cgpath);
         
