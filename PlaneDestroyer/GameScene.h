@@ -24,7 +24,7 @@ static const uint8_t planeCategory = 3;
     
 }
 @property (weak, nonatomic) SplashScreenViewController *splashScreenViewController;
-
+@property (nonatomic) int monstersDestroyed;
 
 @property SKSpriteNode *plane;
 @property AVAudioPlayer *player;

@@ -170,17 +170,23 @@
         SKAction *remove = [SKAction removeFromParent];
         //[enemy runAction:[SKAction sequence:@[actionMove,remove]]];
         
-        SKAction * loseAction = [SKAction runBlock:^{
-            SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
-            SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:NO];
-            [self.view presentScene:gameOverScene transition: reveal];
-            _player.stop;
-        }];
+        SKAction * loseAction = [self won:NO];
         [enemy runAction:[SKAction sequence:@[actionMove, loseAction, remove]]];
         
 //        CGPathRelease(cgpath);
         
     }
+}
+
+-(SKAction *)won:(BOOL)won_ {
+    SKAction * loseAction = [SKAction runBlock:^{
+        SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
+        SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:won_];
+        [self.view presentScene:gameOverScene transition: reveal];
+        [_player stop];
+    }];
+    
+    return loseAction;
 }
 
 -(int)getRandomNumberBetween:(int)from to:(int)to {
@@ -209,14 +215,20 @@
     if ((firstBody.categoryBitMask & bulletCategory) != 0)
     {
         
-        
+     
         SKNode *projectile = (contact.bodyA.categoryBitMask & bulletCategory) ? contact.bodyA.node : contact.bodyB.node;
         SKNode *enemy = (contact.bodyA.categoryBitMask & bulletCategory) ? contact.bodyB.node : contact.bodyA.node;
         [projectile runAction:[SKAction removeFromParent]];
         [enemy runAction:[SKAction playSoundFileNamed:@"explosion_lw.wav" waitForCompletion:NO ]];
         [SKAction waitForDuration:3];
         [enemy runAction:[SKAction removeFromParent]];
-
+        self.monstersDestroyed++;
+        if (self.monstersDestroyed > 4) {
+            [enemy runAction:[self won:YES]];
+            //            SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
+            //            SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:YES];
+            //            [self.view presentScene:gameOverScene transition: reveal];
+        }
     }
     
     //user dies
@@ -229,11 +241,11 @@
         
         [plane runAction:[SKAction removeFromParent]];
         [enemy runAction:[SKAction removeFromParent]];
-        
-        GameScene *game = [[GameScene alloc] initWithSize:CGSizeMake(self.frame.size.width, self.frame.size.height)];
-        
-
-            [self.view presentScene:game transition:[SKTransition doorsCloseHorizontalWithDuration:0.5]];
+        [self won:NO];
+//        GameScene *game = [[GameScene alloc] initWithSize:CGSizeMake(self.frame.size.width, self.frame.size.height)];
+//        
+//
+//            [self.view presentScene:game transition:[SKTransition doorsCloseHorizontalWithDuration:0.5]];
         
     }
 
