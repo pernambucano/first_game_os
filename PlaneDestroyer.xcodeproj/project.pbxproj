@@ -26,6 +26,7 @@
 		655DE6181A06004C00DDC50E /* laser.png in Resources */ = {isa = PBXBuildFile; fileRef = 655DE6171A06004C00DDC50E /* laser.png */; };
 		656B885F1A083CBD00DEE68F /* SplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656B885E1A083CBD00DEE68F /* SplashScreenViewController.m */; };
 		65772A841A26C9E700F9B7EA /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 65772A831A26C9E700F9B7EA /* GameOverScene.m */; };
+		65E3DA161A26FB8200C81B67 /* You Win.png in Resources */ = {isa = PBXBuildFile; fileRef = 65E3DA151A26FB8200C81B67 /* You Win.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		656B885E1A083CBD00DEE68F /* SplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenViewController.m; sourceTree = "<group>"; };
 		65772A821A26C9E700F9B7EA /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		65772A831A26C9E700F9B7EA /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
+		65E3DA151A26FB8200C81B67 /* You Win.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "You Win.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 		650D0F661A05D987008C6C0D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				65E3DA151A26FB8200C81B67 /* You Win.png */,
 				6521142D1A25A6BB00040DBE /* explosion_lw.wav */,
 				652114311A25AF3E00040DBE /* loop.wav */,
 				6521142C1A25A65E00040DBE /* explosion_lower.ogg */,
@@ -250,6 +253,7 @@
 				650D0F961A05E6F9008C6C0D /* shipAnimation.png in Resources */,
 				650D0F921A05DC10008C6C0D /* player.png in Resources */,
 				6553E0FD1A08653F00E69B5E /* explosion.wav in Resources */,
+				65E3DA161A26FB8200C81B67 /* You Win.png in Resources */,
 				655DE6161A05F1FC00DDC50E /* mine.png in Resources */,
 				652114321A25AF3E00040DBE /* loop.wav in Resources */,
 				650D0F791A05D987008C6C0D /* Images.xcassets in Resources */,

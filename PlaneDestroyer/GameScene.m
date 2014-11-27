@@ -20,6 +20,8 @@
 
 -(void)didMoveToView:(SKView *)view {
     
+   
+    
     self.scaleMode = SKSceneScaleModeAspectFill;
     NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"loop" ofType:@"wav"];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
@@ -36,7 +38,7 @@
     
     screenWidth = screenRect.size.width;
     
-    NSLog(@"%f, %f", screenWidth, screenHeight);
+//    NSLog(@"%f, %f", screenWidth, screenHeight);
     
     _plane = [SKSpriteNode spriteNodeWithImageNamed:@"player.png"];
     //    _plane.position = CGPointMake(100, 300); // I could't work with spacial variables TODO: Change this to the right variables
@@ -86,6 +88,7 @@
     
     [self addChild:background];
     
+    
     //schedule enemies
     
     SKAction *wait = [SKAction waitForDuration:1];
@@ -95,6 +98,17 @@
     
     SKAction *updateEnemies = [SKAction sequence:@[wait, callEnemies]];
     [self runAction:[SKAction repeatActionForever:updateEnemies]];
+    
+    //adding scores
+    _scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    _scoreLabel.text = @"Score : 0";
+    _scoreLabel.color =  [SKColor whiteColor];
+    _scoreLabel.fontSize = 28;
+    _scoreLabel.zPosition = 2;
+    _scoreLabel.horizontalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
+    _scoreLabel.position = CGPointMake(_plane.size.width/2, self.frame.size.height/6);
+    [self addChild:_scoreLabel];
+
 }
 
 
@@ -204,7 +218,6 @@
     {
         firstBody = contact.bodyA;
         secondBody = contact.bodyB;
-        
     }
     else
     {
@@ -214,16 +227,18 @@
     
     if ((firstBody.categoryBitMask & bulletCategory) != 0)
     {
-        
-     
+        _monstersDestroyed++;
+        [_scoreLabel setText:[NSString stringWithFormat:@"Score: %d", _monstersDestroyed]];
         SKNode *projectile = (contact.bodyA.categoryBitMask & bulletCategory) ? contact.bodyA.node : contact.bodyB.node;
         SKNode *enemy = (contact.bodyA.categoryBitMask & bulletCategory) ? contact.bodyB.node : contact.bodyA.node;
         [projectile runAction:[SKAction removeFromParent]];
         [enemy runAction:[SKAction playSoundFileNamed:@"explosion_lw.wav" waitForCompletion:NO ]];
         [SKAction waitForDuration:3];
         [enemy runAction:[SKAction removeFromParent]];
-        self.monstersDestroyed++;
-        if (self.monstersDestroyed > 4) {
+        
+        
+
+        if (self.monstersDestroyed >= 4) {
             [enemy runAction:[self won:YES]];
             //            SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
             //            SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:YES];
