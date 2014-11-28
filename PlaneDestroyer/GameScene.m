@@ -257,8 +257,6 @@
         if(secondBody.contactTestBitMask == bulletCategory)
         {
             _monstersDestroyed++;
-//
-            
         }
         secondBody.contactTestBitMask = 0;
     
