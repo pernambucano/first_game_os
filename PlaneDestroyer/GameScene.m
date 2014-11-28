@@ -41,7 +41,7 @@
 //    NSLog(@"%f, %f", screenWidth, screenHeight);
     
     _plane = [SKSpriteNode spriteNodeWithImageNamed:@"player.png"];
-    //    _plane.position = CGPointMake(100, 300); // I could't work with spacial variables TODO: Change this to the right variables
+    
     
     _plane.position = CGPointMake(_plane.size.width/2, self.frame.size.height/2);
     _plane.zPosition = 2;
@@ -53,6 +53,7 @@
     _plane.physicsBody.collisionBitMask = 0;
     _plane.xScale = 1;
     _plane.yScale = 1;
+    
     //Begin of Animate Player
     SKTexture *baseTexture = [SKTexture textureWithImageNamed:@"shipAnimation.png"];
     NSMutableArray *mAnimatingFrames = [NSMutableArray array];
@@ -77,6 +78,32 @@
     //End of Animate Player
     
     [self addChild:_plane];
+    
+    //Explosion animation loading
+    SKTexture *baseTexture_explosion = [SKTexture textureWithImageNamed:@"explosion.png"];
+    _explosionTextures = [NSMutableArray array];
+    //NSLog(@"%f", baseTexture_explosion.size.width);
+    float sizeX = 0;
+    float sizeY = 0;
+    float sizeWidth = 133.5;
+    float sizeHeight = 134;
+    //SKTexture *first;
+    for (int i=0; i < 12 ; i++) {
+        CGRect cutter = CGRectMake(sizeX, sizeY/baseTexture_explosion.size.width, sizeWidth/baseTexture_explosion.size.width, sizeHeight/baseTexture_explosion.size.height);
+        
+        SKTexture *temp = [SKTexture textureWithRect:cutter inTexture:baseTexture_explosion];
+        [_explosionTextures addObject:temp];
+        //NSLog(@"%d added", i);
+        sizeX+=sizeWidth/baseTexture_explosion.size.width;
+    }
+    
+  
+    
+    
+    //NSLog([_explosionTextures objectAtIndex:0]);
+    
+    
+    //end of Explosion animation loading
     
     
     SKSpriteNode *background  = [SKSpriteNode spriteNodeWithImageNamed:@"mainbackground.png"];
@@ -228,22 +255,37 @@
     if ((firstBody.categoryBitMask & bulletCategory) != 0)
     {
         _monstersDestroyed++;
+        
+        CGPoint position=   CGPointMake(contact.bodyA.node.position.x, contact.bodyA.node.position.y);
         [_scoreLabel setText:[NSString stringWithFormat:@"Score: %d", _monstersDestroyed]];
         SKNode *projectile = (contact.bodyA.categoryBitMask & bulletCategory) ? contact.bodyA.node : contact.bodyB.node;
         SKNode *enemy = (contact.bodyA.categoryBitMask & bulletCategory) ? contact.bodyB.node : contact.bodyA.node;
         [projectile runAction:[SKAction removeFromParent]];
         [enemy runAction:[SKAction playSoundFileNamed:@"explosion_lw.wav" waitForCompletion:NO ]];
-        [SKAction waitForDuration:3];
-        [enemy runAction:[SKAction removeFromParent]];
-        
-        
-
         if (self.monstersDestroyed >= 4) {
             [enemy runAction:[self won:YES]];
             //            SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
             //            SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:YES];
             //            [self.view presentScene:gameOverScene transition: reveal];
         }
+        
+        [SKAction waitForDuration:3];
+        [enemy runAction:[SKAction removeFromParent]];
+        
+        SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithTexture:[_explosionTextures objectAtIndex:0]];
+//        SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithImageNamed:@"mine.png"];
+        explosion.zPosition = 1;
+        //explosion.scale = 0.6;
+        explosion.position = position;
+        
+        [self addChild:explosion];
+//
+        SKAction *explosionAction = [SKAction animateWithTextures:_explosionTextures timePerFrame:0.07];
+//
+        SKAction *remove = [SKAction removeFromParent];
+        [explosion runAction:[SKAction sequence:@[explosionAction,remove]]];
+       
+        
     }
     
     //user dies
