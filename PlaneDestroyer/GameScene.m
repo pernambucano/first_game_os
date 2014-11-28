@@ -98,8 +98,6 @@
     }
     
   
-    
-    
     //NSLog([_explosionTextures objectAtIndex:0]);
     
     
@@ -163,6 +161,7 @@
    
         
         SKSpriteNode *enemy;
+        //SKNodeEnemy *enemy;
         enemy = [SKSpriteNode spriteNodeWithImageNamed:@"mine.png"];
         //enemy.position = CGPointMake(screenRect.size.width*1.4, screenRect.size.height);
         enemy.zPosition = 1;
@@ -171,7 +170,8 @@
         enemy.physicsBody.categoryBitMask = enemyCategory;
         enemy.physicsBody.contactTestBitMask = bulletCategory;
         enemy.physicsBody.collisionBitMask = 0;
-        
+        //enemy.collided = NO;
+        //enemy.userData = @"something";
 
         // Determine where to spawn the monster along the Y axis
         int minY = enemy.size.height / 2;
@@ -254,8 +254,14 @@
     
     if ((firstBody.categoryBitMask & bulletCategory) != 0)
     {
-        _monstersDestroyed++;
-        
+        if(secondBody.contactTestBitMask == bulletCategory)
+        {
+            _monstersDestroyed++;
+//
+            
+        }
+        secondBody.contactTestBitMask = 0;
+    
         CGPoint position=   CGPointMake(contact.bodyA.node.position.x, contact.bodyA.node.position.y);
         [_scoreLabel setText:[NSString stringWithFormat:@"Score: %d", _monstersDestroyed]];
         SKNode *projectile = (contact.bodyA.categoryBitMask & bulletCategory) ? contact.bodyA.node : contact.bodyB.node;
@@ -269,7 +275,7 @@
             //            [self.view presentScene:gameOverScene transition: reveal];
         }
         
-        [SKAction waitForDuration:3];
+        //[SKAction waitForDuration:3];
         [enemy runAction:[SKAction removeFromParent]];
         
         SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithTexture:[_explosionTextures objectAtIndex:0]];
@@ -321,12 +327,13 @@
     bullet.position = CGPointMake(location.x+_plane.size.width/2,location.y);
     //bullet.position = location;
     bullet.zPosition = 1;
-    //bullet.scale = 0.8;
+    bullet.scale = 0.8;
     bullet.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bullet.size];
     bullet.physicsBody.dynamic = NO;
     bullet.physicsBody.categoryBitMask = bulletCategory;
     bullet.physicsBody.contactTestBitMask = enemyCategory;
     bullet.physicsBody.collisionBitMask = 0;
+    //bullet.physicsBody.velocity = CGVectorMake(10, 0);
  
     
     SKAction *action = [SKAction moveToX:self.frame.size.width+bullet.size.height duration:3];
