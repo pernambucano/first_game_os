@@ -296,14 +296,34 @@
     //user dies
     else  if ((firstBody.categoryBitMask &  planeCategory) != 0)
     {
-        
+        CGPoint position=   CGPointMake(contact.bodyA.node.position.x, contact.bodyA.node.position.y);
         SKNode *plane = (contact.bodyA.categoryBitMask & planeCategory) ? contact.bodyA.node : contact.bodyB.node;
         SKNode *enemy = (contact.bodyA.categoryBitMask & planeCategory) ? contact.bodyB.node : contact.bodyA.node;
         
         
         [plane runAction:[SKAction removeFromParent]];
         [enemy runAction:[SKAction removeFromParent]];
-        [self won:NO];
+        
+        SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithTexture:[_explosionTextures objectAtIndex:0]];
+        //        SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithImageNamed:@"mine.png"];
+        explosion.zPosition = 1;
+        //explosion.scale = 0.6;
+        explosion.position = position;
+        
+        [self addChild:explosion];
+        //
+        SKAction *explosionAction = [SKAction animateWithTextures:_explosionTextures timePerFrame:0.07];
+        //
+        
+        SKAction *wait = [SKAction waitForDuration:3];
+        SKAction *remove = [SKAction removeFromParent];
+        [explosion runAction:[SKAction sequence:@[explosionAction,remove ]]];
+        
+        
+        
+        [self runAction:wait completion:^
+         {[self runAction:[self won:NO]];}];
+        
 //        GameScene *game = [[GameScene alloc] initWithSize:CGSizeMake(self.frame.size.width, self.frame.size.height)];
 //        
 //

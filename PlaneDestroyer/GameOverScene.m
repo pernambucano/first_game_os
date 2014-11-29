@@ -28,7 +28,7 @@
     NSString * message;
     if (won) {
         message = @"You Won! ";
-        NSString *message1 = @"Everyone is safe from the    Markvits!";
+        NSString *message1 = @"Everyone is safe from the Markvits!";
         self.scaleMode = SKSceneScaleModeAspectFill;
         SKSpriteNode *background  = [SKSpriteNode spriteNodeWithImageNamed:@"gameoverWin.jpg"];
         background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
