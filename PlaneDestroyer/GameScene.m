@@ -262,7 +262,7 @@
         secondBody.contactTestBitMask = 0;
     
         CGPoint position=   CGPointMake(contact.bodyA.node.position.x, contact.bodyA.node.position.y);
-        [_scoreLabel setText:[NSString stringWithFormat:@"Score: %d", _monstersDestroyed]];
+        [_scoreLabel setText:[NSString stringWithFormat:@"Score: %d /20", _monstersDestroyed]];
         SKNode *projectile = (contact.bodyA.categoryBitMask & bulletCategory) ? contact.bodyA.node : contact.bodyB.node;
         SKNode *enemy = (contact.bodyA.categoryBitMask & bulletCategory) ? contact.bodyB.node : contact.bodyA.node;
         [projectile runAction:[SKAction removeFromParent]];
