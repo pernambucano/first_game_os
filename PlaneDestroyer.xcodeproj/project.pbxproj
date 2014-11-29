@@ -26,6 +26,10 @@
 		655DE6181A06004C00DDC50E /* laser.png in Resources */ = {isa = PBXBuildFile; fileRef = 655DE6171A06004C00DDC50E /* laser.png */; };
 		656B885F1A083CBD00DEE68F /* SplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656B885E1A083CBD00DEE68F /* SplashScreenViewController.m */; };
 		65772A841A26C9E700F9B7EA /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 65772A831A26C9E700F9B7EA /* GameOverScene.m */; };
+		65B13E4E1A2A7C9900C7DF06 /* gameoverWin.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 65B13E4D1A2A7C9900C7DF06 /* gameoverWin.jpg */; };
+		65B13E501A2A7E2800C7DF06 /* gameoverLoose.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 65B13E4F1A2A7E2800C7DF06 /* gameoverLoose.jpg */; };
+		65B13E521A2A811500C7DF06 /* playagain.gif in Resources */ = {isa = PBXBuildFile; fileRef = 65B13E511A2A811500C7DF06 /* playagain.gif */; };
+		65B13E541A2A830100C7DF06 /* button_restart.png in Resources */ = {isa = PBXBuildFile; fileRef = 65B13E531A2A830100C7DF06 /* button_restart.png */; };
 		65E3DA161A26FB8200C81B67 /* You Win.png in Resources */ = {isa = PBXBuildFile; fileRef = 65E3DA151A26FB8200C81B67 /* You Win.png */; };
 		65E3DA191A285C3700C81B67 /* bgLayer1.png in Resources */ = {isa = PBXBuildFile; fileRef = 65E3DA171A285C3700C81B67 /* bgLayer1.png */; };
 		65E3DA1A1A285C3700C81B67 /* bgLayer2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65E3DA181A285C3700C81B67 /* bgLayer2.png */; };
@@ -72,6 +76,10 @@
 		656B885E1A083CBD00DEE68F /* SplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenViewController.m; sourceTree = "<group>"; };
 		65772A821A26C9E700F9B7EA /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		65772A831A26C9E700F9B7EA /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
+		65B13E4D1A2A7C9900C7DF06 /* gameoverWin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gameoverWin.jpg; sourceTree = "<group>"; };
+		65B13E4F1A2A7E2800C7DF06 /* gameoverLoose.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gameoverLoose.jpg; sourceTree = "<group>"; };
+		65B13E511A2A811500C7DF06 /* playagain.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = playagain.gif; sourceTree = "<group>"; };
+		65B13E531A2A830100C7DF06 /* button_restart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_restart.png; sourceTree = "<group>"; };
 		65E3DA151A26FB8200C81B67 /* You Win.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "You Win.png"; sourceTree = "<group>"; };
 		65E3DA171A285C3700C81B67 /* bgLayer1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgLayer1.png; sourceTree = "<group>"; };
 		65E3DA181A285C3700C81B67 /* bgLayer2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgLayer2.png; sourceTree = "<group>"; };
@@ -143,12 +151,16 @@
 				65E3DA1B1A285C3E00C81B67 /* explosion.png */,
 				65E3DA181A285C3700C81B67 /* bgLayer2.png */,
 				65E3DA151A26FB8200C81B67 /* You Win.png */,
+				65B13E531A2A830100C7DF06 /* button_restart.png */,
 				6521142D1A25A6BB00040DBE /* explosion_lw.wav */,
 				652114311A25AF3E00040DBE /* loop.wav */,
 				6521142C1A25A65E00040DBE /* explosion_lower.ogg */,
 				6553E0FC1A08653F00E69B5E /* explosion.wav */,
 				655DE6171A06004C00DDC50E /* laser.png */,
 				655DE6151A05F1FC00DDC50E /* mine.png */,
+				65B13E4F1A2A7E2800C7DF06 /* gameoverLoose.jpg */,
+				65B13E511A2A811500C7DF06 /* playagain.gif */,
+				65B13E4D1A2A7C9900C7DF06 /* gameoverWin.jpg */,
 				650D0F951A05E6F9008C6C0D /* shipAnimation.png */,
 				650D0F931A05DC32008C6C0D /* mainbackground.png */,
 				650D0F911A05DC10008C6C0D /* player.png */,
@@ -263,12 +275,16 @@
 				655DE6181A06004C00DDC50E /* laser.png in Resources */,
 				650D0F961A05E6F9008C6C0D /* shipAnimation.png in Resources */,
 				650D0F921A05DC10008C6C0D /* player.png in Resources */,
+				65B13E521A2A811500C7DF06 /* playagain.gif in Resources */,
 				65E3DA191A285C3700C81B67 /* bgLayer1.png in Resources */,
 				6553E0FD1A08653F00E69B5E /* explosion.wav in Resources */,
 				65E3DA161A26FB8200C81B67 /* You Win.png in Resources */,
 				655DE6161A05F1FC00DDC50E /* mine.png in Resources */,
 				652114321A25AF3E00040DBE /* loop.wav in Resources */,
 				650D0F791A05D987008C6C0D /* Images.xcassets in Resources */,
+				65B13E4E1A2A7C9900C7DF06 /* gameoverWin.jpg in Resources */,
+				65B13E501A2A7E2800C7DF06 /* gameoverLoose.jpg in Resources */,
+				65B13E541A2A830100C7DF06 /* button_restart.png in Resources */,
 				650D0F711A05D987008C6C0D /* GameScene.sks in Resources */,
 				650D0F771A05D987008C6C0D /* Main.storyboard in Resources */,
 			);

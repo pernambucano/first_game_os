@@ -174,8 +174,8 @@
         //enemy.userData = @"something";
 
         // Determine where to spawn the monster along the Y axis
-        int minY = enemy.size.height / 2;
-        int maxY = self.frame.size.height - enemy.size.height / 2;
+        int minY = 2*enemy.size.height;
+        int maxY = self.frame.size.height - 2*enemy.size.height;
         int rangeY = maxY - minY;
         int actualY = (arc4random() % rangeY) + minY;
         

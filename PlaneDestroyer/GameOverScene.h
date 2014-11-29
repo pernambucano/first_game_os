@@ -11,5 +11,5 @@
 @interface GameOverScene : SKScene
 //-(void)didMoveToView:(SKView *)view won:(BOOL)won;
 -(id)initWithSize:(CGSize)size won:(BOOL)won;
-
+@property CGSize my_size;
 @end
