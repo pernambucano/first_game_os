@@ -154,7 +154,8 @@
 
 
 -(void) Enemies {
-    int go = [self getRandomNumberBetween:0 to:1];
+//    int go = [self getRandomNumberBetween:0 to:1];
+    int go = 1;
     
     if(go == 1){
         
@@ -174,8 +175,8 @@
         //enemy.userData = @"something";
 
         // Determine where to spawn the monster along the Y axis
-        int minY = enemy.size.height / 2;
-        int maxY = self.frame.size.height - enemy.size.height / 2;
+        int minY = 2*enemy.size.height;
+        int maxY = self.frame.size.height - 2*enemy.size.height;
         int rangeY = maxY - minY;
         int actualY = (arc4random() % rangeY) + minY;
         
@@ -266,7 +267,7 @@
         SKNode *enemy = (contact.bodyA.categoryBitMask & bulletCategory) ? contact.bodyB.node : contact.bodyA.node;
         [projectile runAction:[SKAction removeFromParent]];
         [enemy runAction:[SKAction playSoundFileNamed:@"explosion_lw.wav" waitForCompletion:NO ]];
-        if (self.monstersDestroyed >= 4) {
+        if (self.monstersDestroyed >= 20) {
             [enemy runAction:[self won:YES]];
             //            SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
             //            SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:YES];
