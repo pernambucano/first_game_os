@@ -126,7 +126,7 @@
     
     //adding scores
     _scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    _scoreLabel.text = @"Score : 0";
+    _scoreLabel.text = @"Score : 0 /20";
     _scoreLabel.color =  [SKColor whiteColor];
     _scoreLabel.fontSize = 28;
     _scoreLabel.zPosition = 2;
