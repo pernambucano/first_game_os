@@ -1,31 +1,35 @@
 //
-//  GameScene.m
+//  SecondScene.m
 //  PlaneDestroyer
 //
-//  Created by Paulo Fernandes on 11/1/14.
+//  Created by Paulo Fernandes on 11/30/14.
 //  Copyright (c) 2014 Paulo Fernandes. All rights reserved.
 //
 
-#import "GameScene.h"
-//#import "ScoreScene.h"
 #import "SecondScene.h"
+#import "ScoreScene.h"
 #import "SplashScreenViewController.h"
 
 
 
-@implementation GameScene
+
+@implementation SecondScene
 
 -(void)didMoveToView:(SKView *)view {
     
-    self.scaleMode = SKSceneScaleModeAspectFill;
-    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"loop2" ofType:@"mp3"];
-    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
-  
+    //sound can be found here :http://ericskiff.com/music/
     
-    if(![_player isPlaying]){
-        _player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
-        _player.numberOfLoops = -1; //infinite
-        [_player play];
+    self.scaleMode = SKSceneScaleModeAspectFill;
+    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"loop1" ofType:@"mp3"];
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    
+//    [_player_music stop];
+    
+    if(![_player_music isPlaying])
+    {
+        _player_music = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+        _player_music.numberOfLoops = -1; //infinite
+        [_player_music play];
     }
     
     self.physicsWorld.gravity = CGVectorMake(0, 0);
@@ -36,7 +40,7 @@
     
     screenWidth = screenRect.size.width;
     
-//    NSLog(@"%f, %f", screenWidth, screenHeight);
+    //    NSLog(@"%f, %f", screenWidth, screenHeight);
     
     _plane = [SKSpriteNode spriteNodeWithImageNamed:@"player.png"];
     
@@ -46,8 +50,8 @@
     
     _plane.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_plane.size];
     _plane.physicsBody.dynamic = NO;
-    _plane.physicsBody.categoryBitMask = planeCategory;
-    _plane.physicsBody.contactTestBitMask = enemyCategory;
+    _plane.physicsBody.categoryBitMask = planeCategory2;
+    _plane.physicsBody.contactTestBitMask = enemyCategory2;
     _plane.physicsBody.collisionBitMask = 0;
     _plane.xScale = 1;
     _plane.yScale = 1;
@@ -95,7 +99,7 @@
         sizeX+=sizeWidth/baseTexture_explosion.size.width;
     }
     
-  
+    
     //NSLog([_explosionTextures objectAtIndex:0]);
     
     
@@ -131,13 +135,13 @@
     _scoreLabel.horizontalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
     _scoreLabel.position = CGPointMake(_plane.size.width/2, self.frame.size.height/6);
     [self addChild:_scoreLabel];
-
+    
 }
 
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-
+    
     
 }
 
@@ -153,11 +157,11 @@
 
 -(void) Enemies {
     int go = [self getRandomNumberBetween:0 to:1];
-//    int go = 1;
+    //    int go = 1;
     
     if(go == 1){
         
-   
+        
         
         SKSpriteNode *enemy;
         //SKNodeEnemy *enemy;
@@ -166,12 +170,12 @@
         enemy.zPosition = 1;
         enemy.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:enemy.size];
         enemy.physicsBody.dynamic = YES;
-        enemy.physicsBody.categoryBitMask = enemyCategory;
-        enemy.physicsBody.contactTestBitMask = bulletCategory;
+        enemy.physicsBody.categoryBitMask = enemyCategory2;
+        enemy.physicsBody.contactTestBitMask = bulletCategory2;
         enemy.physicsBody.collisionBitMask = 0;
         //enemy.collided = NO;
         //enemy.userData = @"something";
-
+        
         // Determine where to spawn the monster along the Y axis
         int minY = 2*enemy.size.height;
         int maxY = self.frame.size.height - 2*enemy.size.height;
@@ -179,31 +183,31 @@
         int actualY = (arc4random() % rangeY) + minY;
         
         enemy.position = CGPointMake(self.frame.size.width + enemy.size.width/2, actualY);
-//        
-//        CGMutablePathRef cgpath = CGPathCreateMutable();
-//        
-//        //random values
-//        float xStart = [self getRandomNumberBetween:0+enemy.size.width to:screenRect.size.width-enemy.size.width];
-//        //printf("%f/n", xStart);
-//        float xEnd = [self getRandomNumberBetween:0+enemy.size.width to:screenRect.size.width-enemy.size.width];
-//        
-//        //ControlPoint1
-//        float cp1X = [self getRandomNumberBetween:0+enemy.size.width to:screenRect.size.width-enemy.size.width];
-//        float cp1Y = [self getRandomNumberBetween:0+enemy.size.width to:screenRect.size.width-enemy.size.width ];
-//        
-//        //ControlPoint2
-//        float cp2X = [self getRandomNumberBetween:0+enemy.size.height to:screenRect.size.height-enemy.size.height ];
-//        float cp2Y = [self getRandomNumberBetween:0 to:cp1Y];
-//        
-//        CGPoint s = CGPointMake( 1050.0, xStart*2);
-//        CGPoint e = CGPointMake(-xEnd, 500.0);
-//        CGPoint cp1 = CGPointMake(cp1X, cp1Y);
-//        CGPoint cp2 = CGPointMake(cp2X, cp2Y);
-//        CGPathMoveToPoint(cgpath,NULL, s.x, s.y);
-//        CGPathAddCurveToPoint(cgpath, NULL, cp1.x, cp1.y, cp2.x, cp2.y, e.x, e.y);
+        //
+        //        CGMutablePathRef cgpath = CGPathCreateMutable();
+        //
+        //        //random values
+        //        float xStart = [self getRandomNumberBetween:0+enemy.size.width to:screenRect.size.width-enemy.size.width];
+        //        //printf("%f/n", xStart);
+        //        float xEnd = [self getRandomNumberBetween:0+enemy.size.width to:screenRect.size.width-enemy.size.width];
+        //
+        //        //ControlPoint1
+        //        float cp1X = [self getRandomNumberBetween:0+enemy.size.width to:screenRect.size.width-enemy.size.width];
+        //        float cp1Y = [self getRandomNumberBetween:0+enemy.size.width to:screenRect.size.width-enemy.size.width ];
+        //
+        //        //ControlPoint2
+        //        float cp2X = [self getRandomNumberBetween:0+enemy.size.height to:screenRect.size.height-enemy.size.height ];
+        //        float cp2Y = [self getRandomNumberBetween:0 to:cp1Y];
+        //
+        //        CGPoint s = CGPointMake( 1050.0, xStart*2);
+        //        CGPoint e = CGPointMake(-xEnd, 500.0);
+        //        CGPoint cp1 = CGPointMake(cp1X, cp1Y);
+        //        CGPoint cp2 = CGPointMake(cp2X, cp2Y);
+        //        CGPathMoveToPoint(cgpath,NULL, s.x, s.y);
+        //        CGPathAddCurveToPoint(cgpath, NULL, cp1.x, cp1.y, cp2.x, cp2.y, e.x, e.y);
         
-     //   SKAction *planeDestroy = [SKAction followPath:cgpath asOffset:NO orientToPath:YES duration:7];
-//        SKAction *planeD = [SKAction followPath:cgpath asOffset:NO orientToPath:YES duration:5];
+        //   SKAction *planeDestroy = [SKAction followPath:cgpath asOffset:NO orientToPath:YES duration:7];
+        //        SKAction *planeD = [SKAction followPath:cgpath asOffset:NO orientToPath:YES duration:5];
         [self addChild:enemy];
         
         SKAction * actionMove = [SKAction moveTo:CGPointMake(-enemy.size.width/2, actualY) duration:7];
@@ -213,39 +217,22 @@
         SKAction * loseAction = [self won:NO];
         [enemy runAction:[SKAction sequence:@[actionMove, loseAction, remove]]];
         
-//        CGPathRelease(cgpath);
+        //        CGPathRelease(cgpath);
         
     }
 }
 
 -(SKAction *)won:(BOOL)won_ {
+    SKAction * loseAction = [SKAction runBlock:^{
+        SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
+        SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:won_];
+        [self.view presentScene:gameOverScene transition: reveal];
+        
+         [_player_music stop];
+        
+    }];
     
-    if(!won_) {
-    
-        SKAction * loseAction = [SKAction runBlock:^{
-            SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
-            SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:NO];
-            [self.view presentScene:gameOverScene transition: reveal];
-            
-                    [_player stop];
-            
-            
-            
-        }];
-        return loseAction;
-}
-    else {
-        SKAction * loseAction = [SKAction runBlock:^{
-            SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
-            SKScene * Secondscene = [[SecondScene alloc] initWithSize:self.size ];
-            [self.view presentScene:Secondscene transition: reveal];
-            
-            [_player stop];
-            
-        }];
-        return loseAction;
-
-    }
+    return loseAction;
 }
 
 -(int)getRandomNumberBetween:(int)from to:(int)to {
@@ -270,21 +257,21 @@
         secondBody = contact.bodyA;
     }
     
-    if ((firstBody.categoryBitMask & bulletCategory) != 0)
+    if ((firstBody.categoryBitMask & bulletCategory2) != 0)
     {
-        if(secondBody.contactTestBitMask == bulletCategory)
+        if(secondBody.contactTestBitMask == bulletCategory2)
         {
             _monstersDestroyed++;
         }
         secondBody.contactTestBitMask = 0;
-    
+        
         CGPoint position=   CGPointMake(contact.bodyA.node.position.x, contact.bodyA.node.position.y);
         [_scoreLabel setText:[NSString stringWithFormat:@"Score: %d /20", _monstersDestroyed]];
-        SKNode *projectile = (contact.bodyA.categoryBitMask & bulletCategory) ? contact.bodyA.node : contact.bodyB.node;
-        SKNode *enemy = (contact.bodyA.categoryBitMask & bulletCategory) ? contact.bodyB.node : contact.bodyA.node;
+        SKNode *projectile = (contact.bodyA.categoryBitMask & bulletCategory2) ? contact.bodyA.node : contact.bodyB.node;
+        SKNode *enemy = (contact.bodyA.categoryBitMask & bulletCategory2) ? contact.bodyB.node : contact.bodyA.node;
         [projectile runAction:[SKAction removeFromParent]];
         [enemy runAction:[SKAction playSoundFileNamed:@"explosion_lw.wav" waitForCompletion:NO ]];
-        if (self.monstersDestroyed >= 3) {
+        if (self.monstersDestroyed >= 20) {
             [enemy runAction:[self won:YES]];
             //            SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
             //            SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:YES];
@@ -295,27 +282,27 @@
         [enemy runAction:[SKAction removeFromParent]];
         
         SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithTexture:[_explosionTextures objectAtIndex:0]];
-//        SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithImageNamed:@"mine.png"];
+        //        SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithImageNamed:@"mine.png"];
         explosion.zPosition = 1;
         //explosion.scale = 0.6;
         explosion.position = position;
         
         [self addChild:explosion];
-//
+        //
         SKAction *explosionAction = [SKAction animateWithTextures:_explosionTextures timePerFrame:0.07];
-//
+        //
         SKAction *remove = [SKAction removeFromParent];
         [explosion runAction:[SKAction sequence:@[explosionAction,remove]]];
-       
+        
         
     }
     
     //user dies
-    else  if ((firstBody.categoryBitMask &  planeCategory) != 0)
+    else  if ((firstBody.categoryBitMask &  planeCategory2) != 0)
     {
         CGPoint position=   CGPointMake(contact.bodyA.node.position.x, contact.bodyA.node.position.y);
-        SKNode *plane = (contact.bodyA.categoryBitMask & planeCategory) ? contact.bodyA.node : contact.bodyB.node;
-        SKNode *enemy = (contact.bodyA.categoryBitMask & planeCategory) ? contact.bodyB.node : contact.bodyA.node;
+        SKNode *plane = (contact.bodyA.categoryBitMask & planeCategory2) ? contact.bodyA.node : contact.bodyB.node;
+        SKNode *enemy = (contact.bodyA.categoryBitMask & planeCategory2) ? contact.bodyB.node : contact.bodyA.node;
         
         
         [plane runAction:[SKAction removeFromParent]];
@@ -335,17 +322,19 @@
         SKAction *wait = [SKAction waitForDuration:3];
         SKAction *remove = [SKAction removeFromParent];
         [explosion runAction:[SKAction sequence:@[explosionAction,remove ]]];
-    
-        [self runAction:wait completion:^
-         {[plane runAction:[self won:NO]];}];
         
-//        GameScene *game = [[GameScene alloc] initWithSize:CGSizeMake(self.frame.size.width, self.frame.size.height)];
-//        
-//
-//            [self.view presentScene:game transition:[SKTransition doorsCloseHorizontalWithDuration:0.5]];
+        
+        
+        [self runAction:wait completion:^
+         {[self runAction:[self won:NO]];}];
+        
+        //        GameScene *game = [[GameScene alloc] initWithSize:CGSizeMake(self.frame.size.width, self.frame.size.height)];
+        //
+        //
+        //            [self.view presentScene:game transition:[SKTransition doorsCloseHorizontalWithDuration:0.5]];
         
     }
-
+    
 }
 
 
@@ -364,11 +353,11 @@
     bullet.scale = 0.8;
     bullet.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bullet.size];
     bullet.physicsBody.dynamic = NO;
-    bullet.physicsBody.categoryBitMask = bulletCategory;
-    bullet.physicsBody.contactTestBitMask = enemyCategory;
+    bullet.physicsBody.categoryBitMask = bulletCategory2;
+    bullet.physicsBody.contactTestBitMask = enemyCategory2;
     bullet.physicsBody.collisionBitMask = 0;
     //bullet.physicsBody.velocity = CGVectorMake(10, 0);
- 
+    
     
     SKAction *action = [SKAction moveToX:self.frame.size.width+bullet.size.height duration:3];
     SKAction *remove = [SKAction removeFromParent];

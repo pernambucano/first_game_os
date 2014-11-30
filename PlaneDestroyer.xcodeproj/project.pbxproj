@@ -22,6 +22,9 @@
 		6521142E1A25A6BB00040DBE /* explosion_lw.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6521142D1A25A6BB00040DBE /* explosion_lw.wav */; };
 		652114321A25AF3E00040DBE /* loop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 652114311A25AF3E00040DBE /* loop.wav */; };
 		6553E0FD1A08653F00E69B5E /* explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6553E0FC1A08653F00E69B5E /* explosion.wav */; };
+		6555210B1A2ADF5F0066DF3B /* SecondScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 6555210A1A2ADF5F0066DF3B /* SecondScene.m */; };
+		6555210E1A2AE4BD0066DF3B /* loop1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6555210C1A2AE4BD0066DF3B /* loop1.mp3 */; };
+		6555210F1A2AE4BD0066DF3B /* loop2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6555210D1A2AE4BD0066DF3B /* loop2.mp3 */; };
 		655DE6161A05F1FC00DDC50E /* mine.png in Resources */ = {isa = PBXBuildFile; fileRef = 655DE6151A05F1FC00DDC50E /* mine.png */; };
 		655DE6181A06004C00DDC50E /* laser.png in Resources */ = {isa = PBXBuildFile; fileRef = 655DE6171A06004C00DDC50E /* laser.png */; };
 		656B885F1A083CBD00DEE68F /* SplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656B885E1A083CBD00DEE68F /* SplashScreenViewController.m */; };
@@ -70,6 +73,10 @@
 		6521142D1A25A6BB00040DBE /* explosion_lw.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion_lw.wav; sourceTree = "<group>"; };
 		652114311A25AF3E00040DBE /* loop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = loop.wav; sourceTree = "<group>"; };
 		6553E0FC1A08653F00E69B5E /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
+		655521091A2ADF5F0066DF3B /* SecondScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondScene.h; sourceTree = "<group>"; };
+		6555210A1A2ADF5F0066DF3B /* SecondScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondScene.m; sourceTree = "<group>"; };
+		6555210C1A2AE4BD0066DF3B /* loop1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = loop1.mp3; sourceTree = "<group>"; };
+		6555210D1A2AE4BD0066DF3B /* loop2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = loop2.mp3; sourceTree = "<group>"; };
 		655DE6151A05F1FC00DDC50E /* mine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mine.png; sourceTree = "<group>"; };
 		655DE6171A06004C00DDC50E /* laser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = laser.png; sourceTree = "<group>"; };
 		656B885D1A083CBD00DEE68F /* SplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenViewController.h; sourceTree = "<group>"; };
@@ -125,6 +132,8 @@
 		650D0F651A05D987008C6C0D /* PlaneDestroyer */ = {
 			isa = PBXGroup;
 			children = (
+				655521091A2ADF5F0066DF3B /* SecondScene.h */,
+				6555210A1A2ADF5F0066DF3B /* SecondScene.m */,
 				65772A821A26C9E700F9B7EA /* GameOverScene.h */,
 				65772A831A26C9E700F9B7EA /* GameOverScene.m */,
 				656B885D1A083CBD00DEE68F /* SplashScreenViewController.h */,
@@ -147,6 +156,8 @@
 		650D0F661A05D987008C6C0D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6555210C1A2AE4BD0066DF3B /* loop1.mp3 */,
+				6555210D1A2AE4BD0066DF3B /* loop2.mp3 */,
 				65E3DA171A285C3700C81B67 /* bgLayer1.png */,
 				65E3DA1B1A285C3E00C81B67 /* explosion.png */,
 				65E3DA181A285C3700C81B67 /* bgLayer2.png */,
@@ -277,9 +288,11 @@
 				650D0F921A05DC10008C6C0D /* player.png in Resources */,
 				65B13E521A2A811500C7DF06 /* playagain.gif in Resources */,
 				65E3DA191A285C3700C81B67 /* bgLayer1.png in Resources */,
+				6555210E1A2AE4BD0066DF3B /* loop1.mp3 in Resources */,
 				6553E0FD1A08653F00E69B5E /* explosion.wav in Resources */,
 				65E3DA161A26FB8200C81B67 /* You Win.png in Resources */,
 				655DE6161A05F1FC00DDC50E /* mine.png in Resources */,
+				6555210F1A2AE4BD0066DF3B /* loop2.mp3 in Resources */,
 				652114321A25AF3E00040DBE /* loop.wav in Resources */,
 				650D0F791A05D987008C6C0D /* Images.xcassets in Resources */,
 				65B13E4E1A2A7C9900C7DF06 /* gameoverWin.jpg in Resources */,
@@ -304,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6555210B1A2ADF5F0066DF3B /* SecondScene.m in Sources */,
 				650D0F741A05D987008C6C0D /* GameViewController.m in Sources */,
 				650D0F6C1A05D987008C6C0D /* AppDelegate.m in Sources */,
 				656B885F1A083CBD00DEE68F /* SplashScreenViewController.m in Sources */,
