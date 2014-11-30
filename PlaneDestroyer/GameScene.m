@@ -131,14 +131,11 @@
     _scoreLabel.horizontalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
     _scoreLabel.position = CGPointMake(_plane.size.width/2, self.frame.size.height/6);
     [self addChild:_scoreLabel];
-
 }
 
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-
-    
 }
 
 
@@ -153,11 +150,8 @@
 
 -(void) Enemies {
     int go = [self getRandomNumberBetween:0 to:1];
-//    int go = 1;
-    
+
     if(go == 1){
-        
-   
         
         SKSpriteNode *enemy;
         //SKNodeEnemy *enemy;
