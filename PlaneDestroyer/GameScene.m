@@ -327,12 +327,15 @@
         SKAction *explosionAction = [SKAction animateWithTextures:_explosionTextures timePerFrame:0.07];
         //
         
-        SKAction *wait = [SKAction waitForDuration:3];
+        SKAction *wait = [SKAction waitForDuration:1];
         SKAction *remove = [SKAction removeFromParent];
         [explosion runAction:[SKAction sequence:@[explosionAction,remove ]]];
     
         [self runAction:wait completion:^
-         {[plane runAction:[self won:NO]];}];
+         {[self runAction:[self won:NO]];}];
+        
+        
+       // [plane runAction:[self won:NO]];
         
 //        GameScene *game = [[GameScene alloc] initWithSize:CGSizeMake(self.frame.size.width, self.frame.size.height)];
 //        
