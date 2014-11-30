@@ -18,11 +18,12 @@
 -(void)didMoveToView:(SKView *)view {
     
     self.scaleMode = SKSceneScaleModeAspectFill;
-    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"loop2" ofType:@"mp3"];
-    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    
   
     
     if(![_player isPlaying]){
+        NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"loop2" ofType:@"mp3"];
+        NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
         _player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
         _player.numberOfLoops = -1; //infinite
         [_player play];

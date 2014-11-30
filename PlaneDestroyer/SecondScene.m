@@ -20,13 +20,14 @@
     //sound can be found here :http://ericskiff.com/music/
     
     self.scaleMode = SKSceneScaleModeAspectFill;
-    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"loop1" ofType:@"mp3"];
-    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+   
     
 //    [_player_music stop];
     
     if(![_player_music isPlaying])
     {
+        NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"loop1" ofType:@"mp3"];
+        NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
         _player_music = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
         _player_music.numberOfLoops = -1; //infinite
         [_player_music play];
@@ -154,35 +155,48 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+-(SKSpriteNode *)createEnemy {
+    SKSpriteNode *enemy;
+    //SKNodeEnemy *enemy;
+    enemy = [SKSpriteNode spriteNodeWithImageNamed:@"mine.png"];
+    //enemy.position = CGPointMake(screenRect.size.width*1.4, screenRect.size.height);
+    enemy.zPosition = 1;
+    enemy.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:enemy.size];
+    enemy.physicsBody.dynamic = YES;
+    enemy.physicsBody.categoryBitMask = enemyCategory2;
+    enemy.physicsBody.contactTestBitMask = bulletCategory2;
+    enemy.physicsBody.collisionBitMask = 0;
+    
+    return enemy;
+}
+
 
 -(void) Enemies {
-    int go = [self getRandomNumberBetween:0 to:1];
-    //    int go = 1;
+   // int go = [self getRandomNumberBetween:0 to:1];
+        int go = 1;
     
     if(go == 1){
         
         
         
-        SKSpriteNode *enemy;
-        //SKNodeEnemy *enemy;
-        enemy = [SKSpriteNode spriteNodeWithImageNamed:@"mine.png"];
-        //enemy.position = CGPointMake(screenRect.size.width*1.4, screenRect.size.height);
-        enemy.zPosition = 1;
-        enemy.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:enemy.size];
-        enemy.physicsBody.dynamic = YES;
-        enemy.physicsBody.categoryBitMask = enemyCategory2;
-        enemy.physicsBody.contactTestBitMask = bulletCategory2;
-        enemy.physicsBody.collisionBitMask = 0;
-        //enemy.collided = NO;
-        //enemy.userData = @"something";
+        SKSpriteNode *enemy = [self createEnemy];
+                SKSpriteNode *enemy2 = [self createEnemy];
+                SKSpriteNode *enemy3 = [self createEnemy];
+                SKSpriteNode *enemy4= [self createEnemy];
         
         // Determine where to spawn the monster along the Y axis
         int minY = 2*enemy.size.height;
         int maxY = self.frame.size.height - 2*enemy.size.height;
         int rangeY = maxY - minY;
         int actualY = (arc4random() % rangeY) + minY;
+        int actualY2 = (arc4random() % rangeY) + minY;
+        int actualY3 = (arc4random() % rangeY) + minY;
+        int actualY4 = (arc4random() % rangeY) + minY;
         
         enemy.position = CGPointMake(self.frame.size.width + enemy.size.width/2, actualY);
+        enemy2.position = CGPointMake(self.frame.size.width + enemy.size.width/2, actualY2);
+        enemy3.position = CGPointMake(self.frame.size.width + enemy.size.width/2, actualY3);
+        enemy4.position = CGPointMake(self.frame.size.width + enemy.size.width/2, actualY4);
         //
         //        CGMutablePathRef cgpath = CGPathCreateMutable();
         //
@@ -209,13 +223,22 @@
         //   SKAction *planeDestroy = [SKAction followPath:cgpath asOffset:NO orientToPath:YES duration:7];
         //        SKAction *planeD = [SKAction followPath:cgpath asOffset:NO orientToPath:YES duration:5];
         [self addChild:enemy];
+        [self addChild:enemy2];
+        [self addChild:enemy3];
+        [self addChild:enemy4];
         
         SKAction * actionMove = [SKAction moveTo:CGPointMake(-enemy.size.width/2, actualY) duration:7];
+         SKAction * actionMove2 = [SKAction moveTo:CGPointMake(-enemy.size.width/2, actualY2) duration:7];
+         SKAction * actionMove3 = [SKAction moveTo:CGPointMake(-enemy.size.width/2, actualY3) duration:7];
+         SKAction * actionMove4 = [SKAction moveTo:CGPointMake(-enemy.size.width/2, actualY4) duration:7];
         SKAction *remove = [SKAction removeFromParent];
         //[enemy runAction:[SKAction sequence:@[actionMove,remove]]];
         
         SKAction * loseAction = [self won:NO];
         [enemy runAction:[SKAction sequence:@[actionMove, loseAction, remove]]];
+        [enemy runAction:[SKAction sequence:@[actionMove2, loseAction, remove]]];
+        [enemy runAction:[SKAction sequence:@[actionMove3, loseAction, remove]]];
+        [enemy runAction:[SKAction sequence:@[actionMove4, loseAction, remove]]];
         
         //        CGPathRelease(cgpath);
         
