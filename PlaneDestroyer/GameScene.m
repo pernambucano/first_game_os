@@ -125,7 +125,7 @@
     
     //adding scores
     _scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    _scoreLabel.text = @"Score : 0 /20";
+    _scoreLabel.text = @"Score : 0 /10";
     _scoreLabel.color =  [SKColor whiteColor];
     _scoreLabel.fontSize = 28;
     _scoreLabel.zPosition = 2;
@@ -274,12 +274,12 @@
         secondBody.contactTestBitMask = 0;
     
         CGPoint position=   CGPointMake(contact.bodyA.node.position.x, contact.bodyA.node.position.y);
-        [_scoreLabel setText:[NSString stringWithFormat:@"Score: %d /20", _monstersDestroyed]];
+        [_scoreLabel setText:[NSString stringWithFormat:@"Score: %d /10", _monstersDestroyed]];
         SKNode *projectile = (contact.bodyA.categoryBitMask & bulletCategory) ? contact.bodyA.node : contact.bodyB.node;
         SKNode *enemy = (contact.bodyA.categoryBitMask & bulletCategory) ? contact.bodyB.node : contact.bodyA.node;
         [projectile runAction:[SKAction removeFromParent]];
         [enemy runAction:[SKAction playSoundFileNamed:@"explosion_lw.wav" waitForCompletion:NO ]];
-        if (self.monstersDestroyed >= 3) {
+        if (self.monstersDestroyed >= 10) {
             [enemy runAction:[self won:YES]];
             //            SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
             //            SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:YES];

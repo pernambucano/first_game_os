@@ -21,7 +21,6 @@
     
     self.scaleMode = SKSceneScaleModeAspectFill;
    
-    
 //    [_player_music stop];
     
     if(![_player_music isPlaying])
@@ -30,9 +29,12 @@
         NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
         _player_music = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
         _player_music.numberOfLoops = -1; //infinite
-        [_player_music play];
+               [_player_music play];
+        
+        NSLog(@"sth");
     }
     
+  //  self.player_music
     self.physicsWorld.gravity = CGVectorMake(0, 0);
     self.physicsWorld.contactDelegate = self;
     
@@ -234,11 +236,15 @@
         SKAction *remove = [SKAction removeFromParent];
         //[enemy runAction:[SKAction sequence:@[actionMove,remove]]];
         
-        SKAction * loseAction = [self won:NO];
-        [enemy runAction:[SKAction sequence:@[actionMove, loseAction, remove]]];
-        [enemy runAction:[SKAction sequence:@[actionMove2, loseAction, remove]]];
-        [enemy runAction:[SKAction sequence:@[actionMove3, loseAction, remove]]];
-        [enemy runAction:[SKAction sequence:@[actionMove4, loseAction, remove]]];
+//        SKAction * loseAction = [self won:NO];
+//         SKAction * loseAction2 = [self won:NO];
+//         SKAction * loseAction3 = [self won:NO];
+//         SKAction * loseAction4 = [self won:NO];
+        
+        [enemy runAction:[SKAction sequence:@[actionMove , remove]]];
+        [enemy runAction:[SKAction sequence:@[actionMove2,  remove]]];
+        [enemy runAction:[SKAction sequence:@[actionMove3,  remove]]];
+        [enemy runAction:[SKAction sequence:@[actionMove4,  remove]]];
         
         //        CGPathRelease(cgpath);
         
@@ -246,13 +252,12 @@
 }
 
 -(SKAction *)won:(BOOL)won_ {
+    
     SKAction * loseAction = [SKAction runBlock:^{
         SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
         SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:won_];
         [self.view presentScene:gameOverScene transition: reveal];
-        
-         [_player_music stop];
-        
+        [_player_music stop];
     }];
     
     return loseAction;
@@ -342,7 +347,7 @@
         SKAction *explosionAction = [SKAction animateWithTextures:_explosionTextures timePerFrame:0.07];
         //
         
-        SKAction *wait = [SKAction waitForDuration:3];
+        SKAction *wait = [SKAction waitForDuration:2];
         SKAction *remove = [SKAction removeFromParent];
         [explosion runAction:[SKAction sequence:@[explosionAction,remove ]]];
         
